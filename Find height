@@ -1,0 +1,17 @@
+int getHeight(TreeNode<int>* root) {
+  
+    int n= root->children.size();
+  
+    int ans = 0;
+    for (int i = 0; i <n; i++) {
+      int childrenscount = getHeight(root->children[i]);
+      
+      if(ans < childrenscount)
+      {
+          ans = childrenscount;
+      }
+    }
+    return 1 + ans;
+
+    
+}
