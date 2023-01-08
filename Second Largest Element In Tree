@@ -1,0 +1,45 @@
+TreeNode<int>* getSecondLargestNode(TreeNode<int>* root) {
+    if(root==NULL){
+        return NULL;
+    }
+    int n = root->children.size();
+    if(n==0){
+        return NULL;
+    }
+    TreeNode<int> *lar = root;
+    TreeNode<int>*seclar = root->children[0];
+
+    
+        if(lar->data < seclar->data){
+            seclar = root;
+            lar = root->children[0];
+    }
+    if(lar->data == seclar->data){
+        return NULL;
+    }
+    //TreeNode<int>* result = NULL;
+
+    queue<TreeNode<int>*> q ;
+    q.push(root);
+    while(!q.empty()){
+        TreeNode<int> * curr = q.front();
+        q.pop();
+
+        n = curr->children.size();
+
+        for(int i=0; i<n ; i++){
+            q.push(curr->children[i]);
+            if(curr->children[i]->data > seclar->data){
+                if(curr->children[i]->data > lar->data){
+                    seclar = lar;
+                    lar = curr->children[i];
+                }
+                else{
+                    seclar = curr->children[i];
+                }
+            }
+        }
+    }
+    return seclar;
+    
+}
