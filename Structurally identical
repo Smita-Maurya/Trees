@@ -1,0 +1,25 @@
+bool areIdentical(TreeNode<int> *root1, TreeNode<int> * root2) {
+    if(root1==NULL || root2==NULL){
+        return false;
+    }
+    int n1 =root1->children.size();
+    int n2= root2->children.size();
+    if(n1!=n2){
+        return false;
+    }
+    if(root1->data==root2->data){
+        return true;
+    }
+    else{
+        return false;
+    }
+    for(int i=0 ; i<n1;i++){
+        for(int j=0; j<n2 ;j++){
+           if( areIdentical(root1->children[i], root2->children[j])){
+               return true;
+           }
+        }
+    }
+    return false;
+    
+}
