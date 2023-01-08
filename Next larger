@@ -1,0 +1,31 @@
+TreeNode<int>* getNextLargerElement(TreeNode<int>* root, int x) {
+    if(root==NULL){
+        return NULL;
+    }
+    int n= root->children.size();
+    
+    if(n==0){
+        if(root->data > x){
+            return root;
+        }
+        else{
+            return NULL;
+        }
+        
+    }
+    TreeNode<int> *result = NULL;
+    if(root->data >x){
+        result =root;
+    }
+    for(int i =0;i<n; i++){
+        TreeNode<int> * temp = getNextLargerElement(root->children[i] , x);
+        if(temp==NULL)
+            continue;
+        
+        if(result==NULL || result->data > temp->data)
+            result = temp;
+        
+    }
+    return result;
+    
+}
