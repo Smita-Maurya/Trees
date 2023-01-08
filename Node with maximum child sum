@@ -1,0 +1,29 @@
+int sumnode(TreeNode<int>* root){
+    if(root==NULL){
+        return NULL;
+    }
+    int sum = root->data;
+    int n= root->children.size();
+    for(int i=0;i<n ; i++){
+        sum +=root->children[i]->data;
+    }
+    return sum;
+}
+TreeNode<int>* maxSumNode(TreeNode<int>* root) {
+    if(root==NULL){
+        return NULL;
+    }
+    TreeNode<int>*ans = root;
+    int maxsum = sumnode(root);
+    int n= root->children.size();
+    for(int i=0;i<n ;i++){
+        TreeNode<int>*temp = maxSumNode(root->children[i]);
+        int sum = sumnode(temp);
+        if(sum>maxsum){
+            maxsum=sum;
+            ans = temp;
+        }
+    }
+    return ans;
+    
+}
