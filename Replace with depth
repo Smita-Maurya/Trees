@@ -1,0 +1,17 @@
+void helper(TreeNode<int>*root , int value){
+  if (root == NULL) {
+    return;
+  }
+  int n = root->children.size();
+ /* if (n == 0) {
+    cout << '0' << endl;
+  }*/
+  root->data = value;
+  for (int i = 0; i < n; i++) {
+      helper(root->children[i] , value+1);
+  }
+}
+void replaceWithDepthValue(TreeNode<int>* root) {
+   helper(root , 0);
+    
+}
